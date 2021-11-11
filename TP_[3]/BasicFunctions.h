@@ -21,7 +21,5 @@ int getString(char mensaje[],char str[]);
 int OnlyCharacterValidation(char str[]);
 int askForAdress (char message [], char str[]);
 int getStringVerificado(char mensaje[], char mensajeError[], char *input);
-int argentinianCuitValidation (char mensaje[], char mensajeError[], char *input);
-
 
 #endif /* BASICFUNCTIONS_H_ */
