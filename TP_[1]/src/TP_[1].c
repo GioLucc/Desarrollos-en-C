@@ -62,7 +62,11 @@ int main(void)
 	int banderaDivision = 0;
 	int banderaFactorialR1 = 0;
 	int banderaFactorialR2 = 0;
+	int operationFlag1;
+	int operationFlag2;
 
+	operationFlag1 = 0;
+	operationFlag2 = 0;
 
 	printf("\t\t\t\t==================================================\n");
 	printf("\t\t\t\t\tBienvenido a la Calculadora V2.14\n");
@@ -110,6 +114,7 @@ int main(void)
 					}
 					banderaDePrimerOperando = 1;
 					printf("\n\t\t\t\t\t El primer numero ingresado fue: %.2f\n\n", primerOperando);
+					operationFlag1 = 1;
 					printf("\t\t\t\t\t");system("pause");
 					system("cls");
 				break;
@@ -121,58 +126,67 @@ int main(void)
 					}
 					banderaDeSegundoOperando = 1;
 					printf("\n\n\t\t\t\t\tEl segundo numero ingresado fue: %.2f\n\n", segundoOperando);
+					operationFlag2 = 1;
 					printf("\t\t\t\t\t");system("pause");
 					system("cls");
 				break;
 
 				case 3:
-					resultadoSuma = FuncionSuma (primerOperando, segundoOperando);
-					resultadoResta = FuncionResta (primerOperando, segundoOperando);
-					resultadoMultiplicacion = FuncionMultiplicacion (primerOperando, segundoOperando);
-					if(segundoOperando != 0)
+					if(operationFlag1 == 1
+					&& operationFlag2 == 1)
 					{
-						resultadoDivision = FuncionDivision (primerOperando, segundoOperando);
-						banderaDivision = 1;
+						resultadoSuma = FuncionSuma (primerOperando, segundoOperando);
+						resultadoResta = FuncionResta (primerOperando, segundoOperando);
+						resultadoMultiplicacion = FuncionMultiplicacion (primerOperando, segundoOperando);
+						if(segundoOperando != 0)
+						{
+							resultadoDivision = FuncionDivision (primerOperando, segundoOperando);
+							banderaDivision = 1;
+						}
+						else
+						{
+							banderaDivision = 0;
+						}
+
+						if(primerOperando < 13 && FuncionFactorial(primerOperando, &resultadoFactorialR1)==1)
+						{
+							banderaFactorialR1 = 1;
+						}
+						else
+						{
+							banderaFactorialR1 = 0;
+						}
+
+						if(segundoOperando < 13 && FuncionFactorial(segundoOperando, &resultadoFactorialR2)==1)
+						{
+							banderaFactorialR2 = 1;
+						}
+						else
+						{
+							banderaFactorialR2 = 0;
+						}
+
+						system("cls");
+						printf("\n\n\n\n\n\n\n\n\t\t\t\tRealizando las operaciones, espere unos segundos.");
+						sleep(1);
+						system("cls");
+						printf("\n\n\n\n\n\n\n\n\t\t\t\tRealizando las operaciones, espere unos segundos..");
+						sleep(0.9);
+						system("cls");
+						printf("\n\n\n\n\n\n\n\n\t\t\t\tRealizando las operaciones, espere unos segundos...");
+						sleep(1);
+						system("cls");
+						printf("\n\n\n\n\n\n\n\n\t\t\t\tRealizando las operaciones, espere unos segundos....");
+						sleep(0.9);
+						system("cls");
+						printf("\n\n\n\n\n\n\n\n\t\t\t\tRealizando las operaciones, espere unos segundos.....");
+						sleep(1);
+						system("cls");
 					}
 					else
 					{
-						banderaDivision = 0;
+						printf("\n\t\t\t   Antes de poder realizar las operaciones ingresa 2 operandos porfavor :)!");
 					}
-
-					if(primerOperando < 13 && FuncionFactorial(primerOperando, &resultadoFactorialR1)==1)
-					{
-						banderaFactorialR1 = 1;
-					}
-					else
-					{
-						banderaFactorialR1 = 0;
-					}
-
-					if(segundoOperando < 13 && FuncionFactorial(segundoOperando, &resultadoFactorialR2)==1)
-					{
-						banderaFactorialR2 = 1;
-					}
-					else
-					{
-						banderaFactorialR2 = 0;
-					}
-
-					system("cls");
-					printf("\n\n\n\n\n\n\n\n\t\t\t\tRealizando las operaciones, espere unos segundos.");
-					sleep(1);
-					system("cls");
-					printf("\n\n\n\n\n\n\n\n\t\t\t\tRealizando las operaciones, espere unos segundos..");
-					sleep(0.9);
-					system("cls");
-					printf("\n\n\n\n\n\n\n\n\t\t\t\tRealizando las operaciones, espere unos segundos...");
-					sleep(1);
-					system("cls");
-					printf("\n\n\n\n\n\n\n\n\t\t\t\tRealizando las operaciones, espere unos segundos....");
-					sleep(0.9);
-					system("cls");
-					printf("\n\n\n\n\n\n\n\n\t\t\t\tRealizando las operaciones, espere unos segundos.....");
-					sleep(1);
-					system("cls");
 				break;
 
 				case 4:
