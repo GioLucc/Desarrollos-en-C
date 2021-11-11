@@ -49,22 +49,32 @@ int main(void)
 	setbuf(stdout, NULL);
 	int opcion;
 	float auxOpcion;
-	float primerOperando = 0;
-	float segundoOperando = 0;
+	float primerOperando;
+	float segundoOperando;
 	float resultadoSuma;
 	float resultadoResta;
 	float resultadoMultiplicacion;
 	float resultadoDivision;
 	float resultadoFactorialR1;
 	float resultadoFactorialR2;
-	int banderaDePrimerOperando = 0;
-	int banderaDeSegundoOperando = 0;
-	int banderaDivision = 0;
-	int banderaFactorialR1 = 0;
-	int banderaFactorialR2 = 0;
+	int banderaDePrimerOperando;
+	int banderaDeSegundoOperando;
+	int banderaDivision;
+	int banderaFactorialR1;
+	int banderaFactorialR2;
 	int operationFlag1;
 	int operationFlag2;
+	int thirdOptionFlag;
 
+
+	primerOperando = 0;
+	segundoOperando = 0;
+	banderaDePrimerOperando = 0;
+	banderaDeSegundoOperando = 0;
+	banderaDivision = 0;
+	banderaFactorialR1 = 0;
+	banderaFactorialR2 = 0;
+	thirdOptionFlag = 0;
 	operationFlag1 = 0;
 	operationFlag2 = 0;
 
@@ -110,7 +120,6 @@ int main(void)
 					while(IngreseOperandosMasVerificacion("\n\n\t\t\t\t\t Ingrese su primer numero por favor: ",&primerOperando)==0)
 					{
 						printf("\n\n\t\t\t\t\t*Syntax ERROR Ingrese un numero valido*");
-
 					}
 					banderaDePrimerOperando = 1;
 					printf("\n\t\t\t\t\t El primer numero ingresado fue: %.2f\n\n", primerOperando);
@@ -165,6 +174,7 @@ int main(void)
 						{
 							banderaFactorialR2 = 0;
 						}
+						thirdOptionFlag = 1;
 
 						system("cls");
 						printf("\n\n\n\n\n\n\n\n\t\t\t\tRealizando las operaciones, espere unos segundos.");
@@ -190,40 +200,49 @@ int main(void)
 				break;
 
 				case 4:
-					system("cls");
-					printf("\n\n\n\t\t\t\t\tEl resultado de A= %.2f + B = %.2f es: %.2f\n",primerOperando,segundoOperando,resultadoSuma);
-					printf("\n\n\n\t\t\t\t\tEl resultado de A= %.2f - B = %.2f es: %.2f\n",primerOperando,segundoOperando,resultadoResta);
-					printf("\n\n\n\t\t\t\t\tEl resultado de A= %.2f * B = %.2f es: %.2f\n",primerOperando,segundoOperando,resultadoMultiplicacion);
-					if(banderaDivision == 0)
+					if(operationFlag1 == 1
+					&& operationFlag2 == 1
+					&& thirdOptionFlag == 1)
 					{
-						printf("\n\n\t\t\t\t\t*Syntax ERROR - No es posible dividir por 0*\n\n");
+						system("cls");
+						printf("\n\n\n\t\t\t\t\tEl resultado de A= %.2f + B = %.2f es: %.2f\n",primerOperando,segundoOperando,resultadoSuma);
+						printf("\n\n\n\t\t\t\t\tEl resultado de A= %.2f - B = %.2f es: %.2f\n",primerOperando,segundoOperando,resultadoResta);
+						printf("\n\n\n\t\t\t\t\tEl resultado de A= %.2f * B = %.2f es: %.2f\n",primerOperando,segundoOperando,resultadoMultiplicacion);
+						if(banderaDivision == 0)
+						{
+							printf("\n\n\t\t\t\t\t*Syntax ERROR - No es posible dividir por 0*\n\n");
+						}
+						else
+						{
+							printf("\n\n\n\t\t\t\t\tEl resultado de A= %.2f / B = %.2f es: %.2f\n",primerOperando,segundoOperando,resultadoDivision);
+						}
+
+						if(banderaFactorialR1 == 0)
+						{
+							printf("\n\n\t\t\t\t*Syntax ERROR - No es posible calcular el factorial de este numero*\n\n");
+						}
+						else
+						{
+							printf("\n\n\n\t\t\t\t\tEl resultado de A= %.2f a factorial es: %.2f\n",primerOperando,resultadoFactorialR1);
+						}
+
+						if(banderaFactorialR2 == 0)
+						{
+							printf("\n\n\t\t\t\t*Syntax ERROR - No es posible calcular el factorial de este numero*\n\n");
+						}
+						else
+						{
+							printf("\n\n\n\t\t\t\t\tEl resultado de B= %.2f a factorial es: %.2f\n",segundoOperando,resultadoFactorialR2);
+						}
+
+						printf("\n\n\n");
+						printf("\t\t\t\t\t");system("pause");
+						system("cls");
 					}
 					else
 					{
-						printf("\n\n\n\t\t\t\t\tEl resultado de A= %.2f / B = %.2f es: %.2f\n",primerOperando,segundoOperando,resultadoDivision);
+						printf("\n\t\t\t   Primero ingrese dos operandos y luego calcule todas las operaciones :)!");
 					}
-
-					if(banderaFactorialR1 == 0)
-					{
-						printf("\n\n\t\t\t\t*Syntax ERROR - No es posible calcular el factorial de este numero*\n\n");
-					}
-					else
-					{
-						printf("\n\n\n\t\t\t\t\tEl resultado de A= %.2f a factorial es: %.2f\n",primerOperando,resultadoFactorialR1);
-					}
-
-					if(banderaFactorialR2 == 0)
-					{
-						printf("\n\n\t\t\t\t*Syntax ERROR - No es posible calcular el factorial de este numero*\n\n");
-					}
-					else
-					{
-						printf("\n\n\n\t\t\t\t\tEl resultado de B= %.2f a factorial es: %.2f\n",segundoOperando,resultadoFactorialR2);
-					}
-
-					printf("\n\n\n");
-					printf("\t\t\t\t\t");system("pause");
-					system("cls");
 				break;
 
 				case 5:
