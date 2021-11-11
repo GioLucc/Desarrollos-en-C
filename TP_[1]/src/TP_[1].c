@@ -223,7 +223,15 @@ int main(void)
 						}
 						else
 						{
-							printf("\n\n\n\t\t\t\t\tEl resultado de A= %.2f a factorial es: %.2f\n",primerOperando,resultadoFactorialR1);
+							if(resultadoFactorialR1 == 0)
+							{
+								resultadoFactorialR1 = 1;
+								printf("\n\n\n\t\t\t\t\tEl resultado de A= %.2f a factorial es: %.2f\n",primerOperando,resultadoFactorialR1);
+							}
+							else
+							{
+								printf("\n\n\n\t\t\t\t\tEl resultado de A= %.2f a factorial es: %.2f\n",primerOperando,resultadoFactorialR1);
+							}
 						}
 
 						if(banderaFactorialR2 == 0)
@@ -232,7 +240,15 @@ int main(void)
 						}
 						else
 						{
-							printf("\n\n\n\t\t\t\t\tEl resultado de B= %.2f a factorial es: %.2f\n",segundoOperando,resultadoFactorialR2);
+							if(resultadoFactorialR2 == 0)
+							{
+								resultadoFactorialR2 = 1;
+								printf("\n\n\n\t\t\t\t\tEl resultado de A= %.2f a factorial es: %.2f\n",primerOperando,resultadoFactorialR2);
+							}
+							else
+							{
+								printf("\n\n\n\t\t\t\t\tEl resultado de B= %.2f a factorial es: %.2f\n",segundoOperando,resultadoFactorialR2);
+							}
 						}
 
 						printf("\n\n\n");

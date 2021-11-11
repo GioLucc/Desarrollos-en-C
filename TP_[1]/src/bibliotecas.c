@@ -69,7 +69,7 @@ int FuncionFactorial(float operando,float *numeroDevuelto)
             if(operando>0)
             {
                 retorno=1;
-                for(i=(operando-1);i>0;i-- )
+                for(i=(operando-1);i>0;i--)
                 {
                 	operando*=i;
                 }
