@@ -26,10 +26,16 @@ int main ()
 	setbuf(stdout,NULL);
 	int menuOption;
     LinkedList* listaEmpleados = ll_newLinkedList();
+    int firstLoadFlag;
+    int employeeQty;
 
+    firstLoadFlag = 0;
 
     do
     {
+    	employeeQty = ll_len(listaEmpleados);
+//    	printf("A ver el EmployeesQty - %d", employeeQty);
+
     	printMenu();
 
     	menuOption = getValidInt("\n\n\t\t\t\t\t      Ingrese una opcion del menu para realizar del 1 al 10: ",
@@ -38,6 +44,8 @@ int main ()
         switch(menuOption)
         {
             case 1:
+               firstLoadFlag = 1;
+               controller_firstObligatoryLoad(&firstLoadFlag);
                controller_loadFromText("data.csv",listaEmpleados);
 			break;
 
@@ -54,27 +62,82 @@ int main ()
             break;
 
             case 3:
-            	controller_addEmployee(listaEmpleados);
+            	if((controller_firstObligatoryLoad(&firstLoadFlag)) == 1
+				&& (ll_isEmpty(listaEmpleados)) == 0)
+            	{
+            		controller_addEmployee(listaEmpleados);
+
+                	printf("\n\t\t\t\t\t\t\tEmpleado creado satisfactoriamente!\n"
+                			"\t\t\t\t\t   La cantidad de empleados actuales ahora mismo es de %d!", employeeQty);
+            	}
+            	else
+            	{
+            		printf("\n\t\t\t\t\t   No hay Empleados cargados en el sistema vuelva al menu y agregue al menos uno!\n"
+            				"\t\t\t\t\t\t\t\t   Regresando al menu\n\n");
+            	}
             break;
 
             case 4:
+            	if((controller_firstObligatoryLoad(&firstLoadFlag)) == 1
+				&& (ll_isEmpty(listaEmpleados)) == 0)
+                {
                 	controller_editEmployee(listaEmpleados);
+                }
+                else
+                {
+            		printf("\n\t\t\t\t\t   No hay Empleados cargados en el sistema vuelva al menu y agregue al menos uno!\n"
+            				"\t\t\t\t\t\t\t\t   Regresando al menu\n\n");
+                }
 			break;
 
             case 5:
+            	if((controller_firstObligatoryLoad(&firstLoadFlag)) == 1
+				&& (ll_isEmpty(listaEmpleados)) == 0)
+            	{
             		controller_removeEmployee(listaEmpleados);
+                }
+            	else
+            	{
+            		printf("\n\t\t\t\t\t   No hay Empleados cargados en el sistema vuelva al menu y agregue al menos uno!\n"
+            				"\t\t\t\t\t\t\t\t   Regresando al menu\n\n");
+            	}
 			break;
 
             case 6:
+            	if((controller_firstObligatoryLoad(&firstLoadFlag)) == 1
+				&& (ll_isEmpty(listaEmpleados)) == 0)
+            	{
             		employee_showAllEmployee(listaEmpleados);
+                }
+            	else
+            	{
+            		printf("\n\t\t\t\t\t   No hay Empleados cargados en el sistema vuelva al menu y agregue al menos uno!\n"
+            				"\t\t\t\t\t\t\t\t   Regresando al menu\n\n");
+            	}
             break;
 
             case 7:
+            	if((controller_firstObligatoryLoad(&firstLoadFlag)) == 1
+				&& (ll_isEmpty(listaEmpleados)) == 0)
+            	{
             		controller_sortEmployee(listaEmpleados);
+                }
+            	else
+				{
+            		printf("\n\t\t\t\t\t   No hay Empleados cargados en el sistema vuelva al menu y agregue al menos uno!\n"
+            				"\t\t\t\t\t\t\t\t   Regresando al menu\n\n");				}
             break;
 
             case 8:
+            	if((controller_firstObligatoryLoad(&firstLoadFlag)) == 1
+				&& (ll_isEmpty(listaEmpleados)) == 0)
+            	{
             		controller_saveAsText("data.csv",listaEmpleados);
+            	}
+            	else
+            	{
+            		printf("\n\t\t\t\t\t   No hay Empleados cargados en el sistema vuelva al menu y agregue al menos uno!\n"
+            				"\t\t\t\t\t\t\t\t   Regresando al menu\n\n");            	}
 			break;
 
         }
