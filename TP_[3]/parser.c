@@ -53,14 +53,16 @@ int parser_EmployeeFromText(FILE* pFile , LinkedList* pArrayListEmployee)
  * \return int
  *
  */
-/*int parser_EmployeeFromBinary(FILE* pFile , LinkedList* pArrayListEmployee)
+
+/*
+int parser_EmployeeFromBinary(FILE* pFile , LinkedList* pArrayListEmployee)
 {
 
 	int punteroAux;
-	char idAux;
+	int idAux;
 	char nombreAux;
-	char horasTrabajadas;
-	char sueldoAux;
+	int horasTrabajadas;
+	int sueldoAux;
 	int contadorLeidas;
 	int state;
 
@@ -83,7 +85,8 @@ int parser_EmployeeFromText(FILE* pFile , LinkedList* pArrayListEmployee)
 
     return state;
 
-}*/
+}
+*/
 
 int parser_EmployeeToSaveAsText(FILE* pFile , LinkedList* pArrayListEmployee)
 {
@@ -115,5 +118,60 @@ int parser_EmployeeToSaveAsText(FILE* pFile , LinkedList* pArrayListEmployee)
 	}
 
 	return state;
+}
+
+int parser_EmployeeFromBinary(FILE* pFile , LinkedList* pArrayListEmployee)
+{
+	int state;
+	Employee* aux;
+
+	state = -1;
+
+	if(pFile != NULL && pArrayListEmployee != NULL)
+	{
+		while(!feof(pFile))
+		{
+			aux = employee_new();
+
+			fread(aux, sizeof(Employee), 1, pFile);
+
+			if(feof(pFile))
+			{
+				break;
+			}
+			else
+			{
+				ll_add(pArrayListEmployee, aux);
+			}
+		}
+	}
+
+    return state;
+}
+
+int parser_EmployeeToSaveAsBinary(FILE* pFile , LinkedList* pArrayListEmployee)
+{
+	int state;
+	Employee* aux;
+	int workersQty;
+
+	state = -1;
+
+	if(pFile != NULL && pArrayListEmployee != NULL)
+	{
+		workersQty = ll_len(pArrayListEmployee);
+
+		for(int i = 0; i < workersQty; i++)
+		{
+			aux = ll_get(pArrayListEmployee, i);
+
+			fwrite(aux,sizeof(Employee),1,pFile);
+		}
+
+		state = 0;
+	}
+
+	return state;
+
 }
 

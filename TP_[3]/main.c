@@ -34,7 +34,6 @@ int main ()
     do
     {
     	employeeQty = ll_len(listaEmpleados);
-//    	printf("A ver el EmployeesQty - %d", employeeQty);
 
     	printMenu();
 
@@ -50,15 +49,8 @@ int main ()
 			break;
 
             case 2:
-            /*
-             * firstLoadFlag = 1;
-            	controller_loadFromBinary("data.csv", listaEmpleados);
-            	for(int i = 0; i < ll_len(listaEmpleados); i++)
-            	{
-            		auxLista = (Employee*)ll_get(listaEmpleados,i);
-                	employee_showOneEmployee(auxLista);
-            	}
-            */
+            	firstLoadFlag = 1;
+            	controller_loadFromBinary("data.bin", listaEmpleados);
             break;
 
             case 3:
@@ -107,7 +99,7 @@ int main ()
             	if((controller_firstObligatoryLoad(&firstLoadFlag)) == 1
 				&& (ll_isEmpty(listaEmpleados)) == 0)
             	{
-            		employee_showAllEmployee(listaEmpleados);
+            		controller_ListEmployee(listaEmpleados);
                 }
             	else
             	{
@@ -144,7 +136,7 @@ int main ()
             	if((controller_firstObligatoryLoad(&firstLoadFlag)) == 1
 				&& (ll_isEmpty(listaEmpleados)) == 0)
             	{
-            		controller_saveAsBinary("data.csv",listaEmpleados);
+            		controller_saveAsBinary("data.bin",listaEmpleados);
             	}
             	else
             	{

@@ -60,18 +60,22 @@ int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
 
 	state = -1;
 
-	auxFile = fopen(path,"rb");
 
-	if(auxFile != NULL)
+
+	if(pArrayListEmployee != NULL && path != NULL)
 	{
-//		if(!parser_EmployeeFromBinary(auxFile, pArrayListEmployee))
-//		{
+		auxFile = fopen(path,"rb");
+
+		if(auxFile != NULL
+		&& !parser_EmployeeFromBinary(auxFile, pArrayListEmployee))
+		{
+
+
 			state = 0;
-//		}
+		}
+
+		fclose(auxFile);
 	}
-
-	fclose(auxFile);
-
 
     return state;
 }
@@ -205,8 +209,29 @@ int controller_removeEmployee(LinkedList* pArrayListEmployee)
  */
 int controller_ListEmployee(LinkedList* pArrayListEmployee)
 {
+	Employee* aux;
+	int workersQty;
+	int state;
 
-    return 1;
+	state = -1;
+
+	if(pArrayListEmployee != NULL)
+	{
+		workersQty = ll_len(pArrayListEmployee);
+
+		printf("\n\n\t\t\t\t\t\t| ID   |      Nombre   |  Horas Trabajadas  |    Salario  |\n");
+
+		for(int i = 0; i < workersQty; i++)
+		{
+			aux = ll_get(pArrayListEmployee, i);
+
+			employee_showOneEmployee(aux);
+
+		}
+		state = 0;
+	}
+
+    return state;
 }
 
 /** \brief Ordenar empleados
@@ -262,14 +287,23 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee)
  */
 int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
 {
+	int state;
 	FILE* pFile;
 
-	pFile = fopen(path,"w");
+	state = -1;
 
-	parser_EmployeeToSaveAsText(pFile, pArrayListEmployee);
+	if(path != NULL && pArrayListEmployee != NULL)
+	{
+		pFile = fopen(path,"w");
 
-	fclose(pFile);
-	return 1;
+		if(pFile != NULL && !parser_EmployeeToSaveAsText(pFile, pArrayListEmployee))
+		{
+			state = 0;
+		}
+			fclose(pFile);
+	}
+
+	return state;
 }
 
 
@@ -306,6 +340,22 @@ int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
  */
 int controller_saveAsBinary(char* path , LinkedList* pArrayListEmployee)
 {
-    return 1;
+	int state;
+	FILE* pFile;
+
+	state = -1;
+
+	if(path != NULL && pArrayListEmployee != NULL)
+	{
+		pFile = fopen(path,"wb");
+
+		if(pFile != NULL && !parser_EmployeeToSaveAsBinary(pFile, pArrayListEmployee))
+		{
+			state = 0;
+		}
+			fclose(pFile);
+	}
+
+    return state;
 }
 
