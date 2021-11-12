@@ -20,4 +20,7 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee);
 int controller_saveAsText(char* path , LinkedList* pArrayListEmployee);
 int controller_saveAsBinary(char* path , LinkedList* pArrayListEmployee);
 
+int controller_readIdFromFile(char* path, int* id);
+int controller_saveIdToFile(char* path, int id);
+
 

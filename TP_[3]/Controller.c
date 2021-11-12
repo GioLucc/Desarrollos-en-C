@@ -359,3 +359,45 @@ int controller_saveAsBinary(char* path , LinkedList* pArrayListEmployee)
     return state;
 }
 
+int controller_readIdFromFile(char* path, int* id)
+{
+	int state;
+	FILE* auxFile;
+
+	state = -1;
+
+	if(path != NULL && id != NULL)
+	{
+		auxFile = fopen(path,"rb");
+
+		fread(id,sizeof(int),1,auxFile);
+
+		fclose(auxFile);
+
+		state = 0;
+	}
+
+	return state;
+}
+
+int controller_saveIdToFile(char* path, int id)
+{
+	int state;
+	FILE* auxFile;
+
+
+	state = -1;
+
+	if(path != NULL)
+	{
+		auxFile = fopen(path,"wb");
+
+		fwrite(&id,sizeof(int),1,auxFile);
+
+		fclose(auxFile);
+
+		state = 0;
+	}
+
+	return state;
+}
