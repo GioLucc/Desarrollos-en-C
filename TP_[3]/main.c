@@ -31,6 +31,7 @@ int main ()
 
     firstLoadFlag = 0;
 
+//    controller_saveIdToFile("lastIdUsed",21);
     do
     {
     	employeeQty = ll_len(listaEmpleados);
@@ -57,7 +58,7 @@ int main ()
             	if((controller_firstObligatoryLoad(&firstLoadFlag)) == 1
 				&& (ll_isEmpty(listaEmpleados)) == 0)
             	{
-            		controller_addEmployee(listaEmpleados);
+            		controller_addEmployee(listaEmpleados,"lastIdUsed");
 
                 	printf("\n\t\t\t\t\t\t\tEmpleado creado satisfactoriamente!\n"
                 			"\t\t\t\t\t   La cantidad de empleados actuales ahora mismo es de %d!", employeeQty);

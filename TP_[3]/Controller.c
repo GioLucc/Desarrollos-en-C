@@ -85,29 +85,32 @@ int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
  * \param path char*
  * \param pArrayListEmployee LinkedList*
  * \return int
- *as
+ *
  */
-int controller_addEmployee(LinkedList* pArrayListEmployee)
+int controller_addEmployee(LinkedList* pArrayListEmployee, char* path)
 {
 	int id;
-	int* idAux;
-
-	id = 20;
-	idAux = &id;
-
 	Employee* aux;
 
-	aux = employee_new();
-	employee_setNombreManually(aux);
-	employee_setSueldoManually(aux);
-	employee_setHorasTrabajadasManually(aux);
-	employee_setId(aux, *idAux);
+	controller_readIdFromFile(path,&id);
 
-	ll_add(pArrayListEmployee, aux);
+	aux = employee_newAlta(id);
 
 	employee_showOneEmployee(aux);
 
-	id++;
+	if(getValidInt("Está seguro que desea crear este nuevo empleado?", "Ingrese una opcion correcta", 1, 2) == 1)
+	{
+		printf("Alta exitosa!");
+		ll_add(pArrayListEmployee, aux);
+
+		id++;
+
+		controller_saveIdToFile(path, id);
+	}
+	else
+	{
+		employee_delete(aux);
+	}
 
 
     return 1;
@@ -187,6 +190,7 @@ int controller_removeEmployee(LinkedList* pArrayListEmployee)
 			if(whatToDo == 1)
 			{
 				ll_remove(pArrayListEmployee, idSelectedToRemove);
+				employee_delete(aux);
 				printf("\n\t     Empleado satisfactoriamente removido :)");
 			}
 			else

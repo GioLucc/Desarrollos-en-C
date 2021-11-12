@@ -1,6 +1,6 @@
 #include "Employee.h"
 
-Employee* employee_newAlta()
+Employee* employee_newAlta(int id)
 {
 	Employee* aux;
 
@@ -11,8 +11,9 @@ Employee* employee_newAlta()
 	aux = employee_new();
 
 	getStringVerificado("\n\t\t\t\t\t\t\tIngrese su nombre porfavor :) : ",
-			"\t\t\t\t\t\tERROR - (RE-Ingrese su nombre por favor) - ERROR : \n",
-			nombre);
+	"\t\t\t\t\t\tERROR - (RE-Ingrese su nombre por favor) - ERROR : \n",
+	nombre);
+
 	sueldo = getValidInt("\n\t\t\t\t\t         Ingrese el pago de su ultimo recibo de sueldo porfavor",
 					"\n\n\t\t\t\t      ERROR - (RE-Ingrese su sueldo porfavor) - ERROR\n\n", 1,500000);
 
@@ -23,6 +24,7 @@ Employee* employee_newAlta()
 	employee_setNombre(aux, nombre);
 	employee_setHorasTrabajadas(aux, horas);
 	employee_setSueldo(aux, sueldo);
+	employee_setId(aux, id);
 
 	return aux;
 }
@@ -69,6 +71,11 @@ Employee* employee_newParametros(char* idStr,char* nombreStr,char* horasTrabajad
 	employee_setSueldo(newEmployee, atoi(sueldoStr));
 */
 	return newEmployee;
+}
+
+void employee_delete(Employee* this)
+{
+	free(this);
 }
 
 int employee_setId(Employee *this, int id)

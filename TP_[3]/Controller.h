@@ -9,7 +9,7 @@ int controller_firstObligatoryLoad(int* verification);
 int controller_loadFromText(char* path , LinkedList* pArrayListEmployee);
 int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee);
 
-int controller_addEmployee(LinkedList* pArrayListEmployee);
+int controller_addEmployee(LinkedList* pArrayListEmployee, char* path);
 
 int controller_editEmployee(LinkedList* pArrayListEmployee);
 
