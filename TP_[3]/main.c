@@ -140,6 +140,18 @@ int main ()
             				"\t\t\t\t\t\t\t\t   Regresando al menu\n\n");            	}
 			break;
 
+            case 9:
+            	if((controller_firstObligatoryLoad(&firstLoadFlag)) == 1
+				&& (ll_isEmpty(listaEmpleados)) == 0)
+            	{
+            		controller_saveAsBinary("data.csv",listaEmpleados);
+            	}
+            	else
+            	{
+            		printf("\n\t\t\t\t\t   No hay Empleados cargados en el sistema vuelva al menu y agregue al menos uno!\n"
+            				"\t\t\t\t\t\t\t\t   Regresando al menu\n\n");            	}
+			break;
+
         }
     }while(menuOption != 10);
 

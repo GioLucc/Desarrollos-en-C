@@ -312,57 +312,22 @@ int employee_showAllEmployee(LinkedList* listaEmpleados)
 	  return state;
 }
 
-int employee_searchIndexById(LinkedList* listaEmpleados, int id)
+int employee_searchIndexById(LinkedList* listaEmpleados, int idToModify)
 {
 	int state;
 	int workersLen;
 	Employee* aux;
-	int idAux;
-
-	if(listaEmpleados != NULL)
-	{
-		workersLen = ll_len(listaEmpleados); //// Le paso la linked list, para saber el total cargados at the moment
-
-		for(int i = 0; i < workersLen; i++)
-		{
-			aux = ll_get(listaEmpleados, i);
-
-			employee_getId(aux, &idAux);
-
-			if(idAux == id)
-			{
-				state = i;
-				break;
-			}
-		}
-
-	}
-
-		return state;
-}
-/// llevar al controlador
-int employee_askValidId(LinkedList* listaEmpleados)
-{
-	int state;
-	int workersLen;
-	Employee* aux;
-	int idToModify;
 	int idAux;
 	int pos;
+
+	workersLen = ll_len(listaEmpleados);
 
 	state = -1;
 
 	if(listaEmpleados != NULL)
 	{
-		workersLen = ll_len(listaEmpleados);
-
 		while(state == -1)
 		{
-			employee_showAllEmployee(listaEmpleados);
-
-			idToModify = getValidInt("\n Seleccione a un cliente de la lista recien vista para (MODIFICAR) || (Eliminar) : \n\t\t\t    ",
-			"Ese cliente no existe", 1, 9999);
-
 			for(int i = 0; i < workersLen; i++)
 			{
 				aux = ll_get(listaEmpleados, i);
@@ -378,6 +343,9 @@ int employee_askValidId(LinkedList* listaEmpleados)
 				}
 			}
 			printf("\nNo existe ningun empleado con esa ID, ingreselo nuevamente!\n\n");
+
+			idToModify = getValidInt("\n Seleccione a un cliente de la lista recien vista para (MODIFICAR) || (Eliminar) : \n\t\t\t    ",
+			"Ese cliente no existe", 1, 9999);
 		}
 	}
 
@@ -385,7 +353,27 @@ int employee_askValidId(LinkedList* listaEmpleados)
 }
 
 
+/// llevar al controlador
+int employee_askValidId(LinkedList* listaEmpleados)
+{
+	int idToModify;
+	int pos;
+	int workersLen;
 
+	workersLen = ll_len(listaEmpleados);
+
+	if(listaEmpleados != NULL)
+	{
+		employee_showAllEmployee(listaEmpleados);
+
+		idToModify = getValidInt("\n Seleccione a un cliente de la lista recien vista para (MODIFICAR) || (Eliminar) : \n\t\t\t    ",
+		"Ese cliente no existe", 1, 9999);
+
+		pos = employee_searchIndexById(listaEmpleados,idToModify);
+	}
+
+	return pos;
+}
 
 
 
