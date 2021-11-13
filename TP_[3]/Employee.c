@@ -270,7 +270,7 @@ int employee_setHorasTrabajadasManually(Employee* this)
 
 		return state;
 }
-//llevar los show a controller list
+
 int employee_showOneEmployee(Employee* this)
 {
 	int state;
@@ -352,15 +352,13 @@ int employee_searchIndexById(LinkedList* listaEmpleados, int idToModify)
 			printf("\nNo existe ningun empleado con esa ID, ingreselo nuevamente!\n\n");
 
 			idToModify = getValidInt("\n Seleccione a un cliente de la lista recien vista para (MODIFICAR) || (Eliminar) : \n\t\t\t    ",
-			"Ese cliente no existe", 1, 9999);
+			"Ese cliente no existe", 1, workersLen);
 		}
 	}
 
 	return state;
 }
 
-
-/// llevar al controlador
 int employee_askValidId(LinkedList* listaEmpleados)
 {
 	int idToModify;
@@ -374,7 +372,7 @@ int employee_askValidId(LinkedList* listaEmpleados)
 		employee_showAllEmployee(listaEmpleados);
 
 		idToModify = getValidInt("\n Seleccione a un cliente de la lista recien vista para (MODIFICAR) || (Eliminar) : \n\t\t\t    ",
-		"Ese cliente no existe", 1, 9999);
+		"Ese cliente no existe", 1, workersLen);
 
 		pos = employee_searchIndexById(listaEmpleados,idToModify);
 	}

@@ -60,8 +60,6 @@ int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
 
 	state = -1;
 
-
-
 	if(pArrayListEmployee != NULL && path != NULL)
 	{
 		auxFile = fopen(path,"rb");
@@ -223,16 +221,19 @@ int controller_ListEmployee(LinkedList* pArrayListEmployee)
 	{
 		workersQty = ll_len(pArrayListEmployee);
 
-		printf("\n\n\t\t\t\t\t\t| ID   |      Nombre   |  Horas Trabajadas  |    Salario  |\n");
-
-		for(int i = 0; i < workersQty; i++)
+		if(workersQty > 0)
 		{
-			aux = ll_get(pArrayListEmployee, i);
+			printf("\n\n\t\t\t\t\t\t| ID   |      Nombre   |  Horas Trabajadas  |    Salario  |\n");
 
-			employee_showOneEmployee(aux);
+			for(int i = 0; i < workersQty; i++)
+			{
+				aux = ll_get(pArrayListEmployee, i);
 
+				employee_showOneEmployee(aux);
+
+			}
+			state = 0;
 		}
-		state = 0;
 	}
 
     return state;
@@ -309,31 +310,6 @@ int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
 
 	return state;
 }
-
-
-//	fprintf(pFile, _Format);
-
-
-	/*
-	 * FILE* auxFile;
-	int state;
-
-
-	state = -1;
-	auxFile = fopen(path,"r");// Al hacer que auxfile apunte a el path del archivo
-
-	if(auxFile != NULL)
-	{
-		if(!parser_EmployeeFromText(auxFile, pArrayListEmployee))
-		{
-			state = 0;
-		}
-	fclose(auxFile); // a la hora de cerrarlo tenemos que pasarle el parametro del archivo al cual apuntamos cuando lo abrimos
-	}
-	 */
-
-
-
 
 /** \brief Guarda los datos de los empleados en el archivo data.csv (modo binario).
  *

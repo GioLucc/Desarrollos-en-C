@@ -28,8 +28,10 @@ int main ()
     LinkedList* listaEmpleados = ll_newLinkedList();
     int firstLoadFlag;
     int employeeQty;
+    int maxTimesCharge;
 
     firstLoadFlag = 0;
+    maxTimesCharge = 0;
 
 //    controller_saveIdToFile("lastIdUsed",21);
     do
@@ -44,14 +46,40 @@ int main ()
         switch(menuOption)
         {
             case 1:
-               firstLoadFlag = 1;
-               controller_firstObligatoryLoad(&firstLoadFlag);
-               controller_loadFromText("data.csv",listaEmpleados);
+              if(firstLoadFlag == 0
+              && maxTimesCharge == 0)
+			  {
+	               controller_firstObligatoryLoad(&firstLoadFlag);
+	               controller_loadFromText("data.csv",listaEmpleados);
+
+	               printf("\n\t\t\t\t\t\t\tSe ha cargado la lista satisfactoriamente");
+	               firstLoadFlag = 1;
+	               maxTimesCharge = 1;
+			  }
+		      else
+		      {
+            	   printf("\n\t\t\t\t\t\t\tNo se puede cargar el archivo mas de una vez!\n"
+            			   "\t\t\t\t\t\t\t   Esto ocasionaria un error en el programa");
+		      }
 			break;
 
             case 2:
-            	firstLoadFlag = 1;
-            	controller_loadFromBinary("data.bin", listaEmpleados);
+                if(firstLoadFlag == 0
+                && maxTimesCharge == 0)
+  			  {
+  	               controller_firstObligatoryLoad(&firstLoadFlag);
+  	               controller_loadFromBinary("data.bin", listaEmpleados);
+
+  	               printf("\n\t\t\t\t\t\t\tSe ha cargado la lista satisfactoriamente");
+  	               firstLoadFlag = 1;
+  	               maxTimesCharge = 1;
+  			  }
+  		      else
+  		      {
+              	   printf("\n\t\t\t\t\t\t\tNo se puede cargar el archivo mas de una vez!\n"
+              			   "\t\t\t\t\t\t\t   Esto ocasionaria un error en el programa");
+  		      }
+
             break;
 
             case 3:
@@ -65,7 +93,7 @@ int main ()
             	}
             	else
             	{
-            		printf("\n\t\t\t\t\t   No hay Empleados cargados en el sistema vuelva al menu y agregue al menos uno!\n"
+            		printf("\n\t\t\t\t   No hay Empleados cargados en el sistema vuelva al menu y agregue al menos uno!\n"
             				"\t\t\t\t\t\t\t\t   Regresando al menu\n\n");
             	}
             break;
@@ -78,7 +106,7 @@ int main ()
                 }
                 else
                 {
-            		printf("\n\t\t\t\t\t   No hay Empleados cargados en el sistema vuelva al menu y agregue al menos uno!\n"
+            		printf("\n\t\t\t\t   No hay Empleados cargados en el sistema vuelva al menu y agregue al menos uno!\n"
             				"\t\t\t\t\t\t\t\t   Regresando al menu\n\n");
                 }
 			break;
@@ -91,7 +119,7 @@ int main ()
                 }
             	else
             	{
-            		printf("\n\t\t\t\t\t   No hay Empleados cargados en el sistema vuelva al menu y agregue al menos uno!\n"
+            		printf("\n\t\t\t\t   No hay Empleados cargados en el sistema vuelva al menu y agregue al menos uno!\n"
             				"\t\t\t\t\t\t\t\t   Regresando al menu\n\n");
             	}
 			break;
@@ -101,10 +129,12 @@ int main ()
 				&& (ll_isEmpty(listaEmpleados)) == 0)
             	{
             		controller_ListEmployee(listaEmpleados);
+
+
                 }
             	else
             	{
-            		printf("\n\t\t\t\t\t   No hay Empleados cargados en el sistema vuelva al menu y agregue al menos uno!\n"
+            		printf("\n\t\t\t\t   No hay Empleados cargados en el sistema vuelva al menu y agregue al menos uno!\n"
             				"\t\t\t\t\t\t\t\t   Regresando al menu\n\n");
             	}
             break;
@@ -117,7 +147,7 @@ int main ()
                 }
             	else
 				{
-            		printf("\n\t\t\t\t\t   No hay Empleados cargados en el sistema vuelva al menu y agregue al menos uno!\n"
+            		printf("\n\t\t\t\t   No hay Empleados cargados en el sistema vuelva al menu y agregue al menos uno!\n"
             				"\t\t\t\t\t\t\t\t   Regresando al menu\n\n");				}
             break;
 
@@ -129,7 +159,7 @@ int main ()
             	}
             	else
             	{
-            		printf("\n\t\t\t\t\t   No hay Empleados cargados en el sistema vuelva al menu y agregue al menos uno!\n"
+            		printf("\n\t\t\t\t   No hay Empleados cargados en el sistema vuelva al menu y agregue al menos uno!\n"
             				"\t\t\t\t\t\t\t\t   Regresando al menu\n\n");            	}
 			break;
 
@@ -141,8 +171,17 @@ int main ()
             	}
             	else
             	{
-            		printf("\n\t\t\t\t\t   No hay Empleados cargados en el sistema vuelva al menu y agregue al menos uno!\n"
+            		printf("\n\t\t\t\t   No hay Empleados cargados en el sistema vuelva al menu y agregue al menos uno!\n"
             				"\t\t\t\t\t\t\t\t   Regresando al menu\n\n");            	}
+			break;
+
+            case 10:
+            		printf("\n\t\t\t\t\t\t\t Gracias por haber usado nuestro programa!\n"
+            				"\t\t\t\t\t\t\t\t Cerrando aplicacion\n\n");
+            				ll_deleteLinkedList(listaEmpleados);
+
+            		sleep(3);
+
 			break;
 
         }
