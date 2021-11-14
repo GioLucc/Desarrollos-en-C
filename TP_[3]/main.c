@@ -33,7 +33,7 @@ int main ()
     firstLoadFlag = 0;
     maxTimesCharge = 0;
 
-//    controller_saveIdToFile("lastIdUsed",21);
+    controller_saveIdToFile("lastIdUsed",21);
     do
     {
     	employeeQty = ll_len(listaEmpleados);

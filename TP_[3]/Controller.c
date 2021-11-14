@@ -339,6 +339,12 @@ int controller_saveAsBinary(char* path , LinkedList* pArrayListEmployee)
     return state;
 }
 
+/// @fn int controller_readIdFromFile(char*, int*)
+/// @brief Lee el archivo para obtener el ultimo id puesto.
+///
+/// @param path
+/// @param id
+/// @return -1 si no se pudo leer, 0 si se pudo leer.
 int controller_readIdFromFile(char* path, int* id)
 {
 	int state;
@@ -360,11 +366,16 @@ int controller_readIdFromFile(char* path, int* id)
 	return state;
 }
 
+/// @fn int controller_saveIdToFile(char*, int)
+/// @brief guarda el id obtenido despues de haber leido el archivo.
+///
+/// @param path
+/// @param id
+/// @return devuelve -1 si no pudo guarda el id y 0 si lo pudo hacer.
 int controller_saveIdToFile(char* path, int id)
 {
 	int state;
 	FILE* auxFile;
-
 
 	state = -1;
 

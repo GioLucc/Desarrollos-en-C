@@ -46,48 +46,12 @@ int parser_EmployeeFromText(FILE* pFile , LinkedList* pArrayListEmployee)
     return state;
 }
 
-/** \brief Parsea los datos los datos de los empleados desde el archivo data.csv (modo binario).
- *
- * \param path char*
- * \param pArrayListEmployee LinkedList*
- * \return int
- *
- */
-
-/*
-int parser_EmployeeFromBinary(FILE* pFile , LinkedList* pArrayListEmployee)
-{
-
-	int punteroAux;
-	int idAux;
-	char nombreAux;
-	int horasTrabajadas;
-	int sueldoAux;
-	int contadorLeidas;
-	int state;
-
-	state = -1;
-
-	while(!feof(pFile))
-	{
-		contadorLeidas = fscanf(pFile,"%[^,],%[^,],%[^,],%[^\n]",idAux,nombreAux,horasTrabajadas,sueldoAux);
-
-		if(contadorLeidas == 4)
-		{
-			punteroAux = employee_newParametros(idAux, nombreAux, horasTrabajadas, sueldoAux);
-			if(punteroAux != NULL)
-			{
-				ll_add(pArrayListEmployee, punteroAux);
-				state = 0;
-			}
-		}
-	}
-
-    return state;
-
-}
-*/
-
+/// @fn int parser_EmployeeToSaveAsText(FILE*, LinkedList*)
+/// @brief Guarda los datos de los empleados en un archivo de texto.
+///
+/// @param pFile
+/// @param pArrayListEmployee
+/// @return 0 Si se pudo guardar -1 Si no.
 int parser_EmployeeToSaveAsText(FILE* pFile , LinkedList* pArrayListEmployee)
 {
 	Employee* auxEmployee;
@@ -120,6 +84,13 @@ int parser_EmployeeToSaveAsText(FILE* pFile , LinkedList* pArrayListEmployee)
 	return state;
 }
 
+/** \brief Parsea los datos los datos de los empleados desde el archivo data.csv (modo binario).
+ *
+ * \param path char*
+ * \param pArrayListEmployee LinkedList*
+ * \return int
+ *
+ */
 int parser_EmployeeFromBinary(FILE* pFile , LinkedList* pArrayListEmployee)
 {
 	int state;
@@ -149,6 +120,12 @@ int parser_EmployeeFromBinary(FILE* pFile , LinkedList* pArrayListEmployee)
     return state;
 }
 
+/// @fn int parser_EmployeeToSaveAsBinary(FILE*, LinkedList*)
+/// @brief Guarda los datos de los empleados en binario.
+///
+/// @param pFile
+/// @param pArrayListEmployee
+/// @return 0 Si se pudo guardar -1 Si no.
 int parser_EmployeeToSaveAsBinary(FILE* pFile , LinkedList* pArrayListEmployee)
 {
 	int state;

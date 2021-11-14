@@ -14,10 +14,8 @@ typedef struct
 
 }Employee;
 
-
-// solo set y get ->
 Employee* employee_newAlta(int id);
-Employee* employee_new(); // constructor calloc();
+Employee* employee_new();
 Employee* employee_newParametros(char* idStr,char* nombreStr,char* horasTrabajadasStr, char* sueldoStr);
 
 void employee_delete(Employee*);
