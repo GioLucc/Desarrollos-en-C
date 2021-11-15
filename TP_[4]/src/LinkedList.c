@@ -16,6 +16,15 @@ static int addNode(LinkedList* this, int nodeIndex,void* pElement);
 LinkedList* ll_newLinkedList(void)
 {
     LinkedList* this= NULL;
+
+    this = (LinkedList*) malloc(sizeof(LinkedList)); // Malloc busca un espacio de memoria para THIS del tamaño de la struct linked list
+    												 // con this manipularemos la estructura linked list
+    												 // Puede devolver NULL si no encuentra
+    if(this != NULL)
+    {
+    	this->size = 0;
+    }
+
     return this;
 }
 
@@ -28,6 +37,12 @@ LinkedList* ll_newLinkedList(void)
 int ll_len(LinkedList* this)
 {
     int returnAux = -1;
+
+    if(this != NULL)
+    {
+    	returnAux = this->size;
+    }
+
     return returnAux;
 }
 
@@ -42,6 +57,20 @@ int ll_len(LinkedList* this)
  */
 static Node* getNode(LinkedList* this, int nodeIndex)
 {
+	Node* PNode;
+
+	if(this != NULL && nodeIndex > -1)
+	{
+		PNode = this->pFirstNode;
+
+		for(int i = 0; i < nodeIndex; i ++)
+		{
+			PNode = PNode->pNextNode;
+		}
+
+		return PNode;
+	}
+
     return NULL;
 }
 
