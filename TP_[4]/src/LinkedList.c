@@ -23,6 +23,7 @@ LinkedList* ll_newLinkedList(void)
     if(this != NULL)
     {
     	this->size = 0;
+    	this->pFirstNode = NULL;
     }
 
     return this;
@@ -52,26 +53,30 @@ int ll_len(LinkedList* this)
  * \param this LinkedList* Puntero a la lista
  * \param index int Indice del nodo a obtener
  * \return Node* Retorna  (NULL) Error: si el puntero a la lista es NULL o (si el indice es menor a 0 o mayor al len de la lista)
-                        (pNode) Si funciono correctamente
+                        (auxNode) Si funciono correctamente
  *
  */
 static Node* getNode(LinkedList* this, int nodeIndex)
 {
-	Node* PNode;
+	Node* auxNode = NULL;;
+	int len;
 
-	if(this != NULL && nodeIndex > -1)
+	if(this != NULL) // No le puede llegar por parametro un indice mayor que los nodos existentes
 	{
-		PNode = this->pFirstNode;
+		len = ll_len(this);
 
-		for(int i = 0; i < nodeIndex; i ++)
+		if(nodeIndex < len && nodeIndex > -1)
 		{
-			PNode = PNode->pNextNode;
+			auxNode = this->pFirstNode; // El nodo aux obtiene la posicion de memoria de el primer nodo de la lista.
+
+			for(int i = 0; i < nodeIndex; i++)
+			{
+				auxNode = auxNode->pNextNode; // Consecutivamente un nodo empezaria a mirar al siguiente
+			}
+
 		}
-
-		return PNode;
 	}
-
-    return NULL;
+	return auxNode;
 }
 
 /** \brief  Permite realizar el test de la funcion getNode la cual es privada
@@ -97,10 +102,45 @@ Node* test_getNode(LinkedList* this, int nodeIndex)
                         ( 0) Si funciono correctamente
  *
  */
-static int addNode(LinkedList* this, int nodeIndex,void* pElement)
+static int addNode(LinkedList* this, int nodeIndex, void* pElement)
 {
-    int returnAux = -1;
-    return returnAux;
+    int state;
+	int len;
+	Node* PNode;
+	Node* antNodo;
+
+    state = -1;
+
+    if(this != NULL)
+    {
+		len = ll_len(this);
+
+    	if(nodeIndex > -1 && nodeIndex <= len)
+    	{
+    		PNode = (Node*)malloc(sizeof(Node));
+
+    		if(PNode != NULL)
+    		{
+    			PNode->pElement = pElement;
+    			PNode->pNextNode = NULL;
+
+				if(nodeIndex == 0)
+				{
+					PNode->pNextNode = this->pFirstNode;
+					this->pFirstNode = PNode;
+				}
+				else
+				{
+					antNodo = getNode(this, nodeIndex-1);
+					antNodo->pNextNode = PNode;
+				}
+				this->size++;
+				state = 0;
+    		}
+    	}
+    }
+
+    return state;
 }
 
 /** \brief Permite realizar el test de la funcion addNode la cual es privada
@@ -121,15 +161,33 @@ int test_addNode(LinkedList* this, int nodeIndex,void* pElement)
 /** \brief  Agrega un elemento a la lista
  * \param pList LinkedList* Puntero a la lista
  * \param pElement void* Puntero al elemento a ser agregado
- * \return int Retorna  (-1) Error: si el puntero a la lista es NULL
-                        ( 0) Si funciono correctamente
+ * \return int Retorna (-1) Error: si el puntero a la lista es NULL
+                       ( 0) Si funciono correctamente
  *
  */
 int ll_add(LinkedList* this, void* pElement)
 {
-    int returnAux = -1;
+    int state;
+    int len;
+    int addreturn;
 
-    return returnAux;
+    state = -1;
+
+    if(this != NULL)
+    {
+    	len = ll_len(this);
+
+    	addreturn = addNode (this, len, pElement);  	/// Creame un nodo de esta lista, en esta pos///y con el elemento de mis params.
+
+    	if(addreturn == 0)
+    	{
+        	this->size++;
+        	state = 0;
+    	}
+    }
+
+
+    return state;
 }
 
 /** \brief Permite realizar el test de la funcion addNode la cual es privada
