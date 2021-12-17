@@ -50,7 +50,7 @@ int ll_len(LinkedList* self);
 ## 3. Cómo realizar y entregar el trabajo práctico
 El trabajo práctico deberá ser entregado en el repositorio de GIT correspondiente al TP3 de la materia.
 
-El mismo consistirá en el proyecto de `Code::Blocks` con el programa funcionando y comentado, respetando las reglas de estilo de la cátedra. La compilación no deberá arrojar mensajes de `error` ni de `warnings`.
+El mismo consistirá en el proyecto de `Eclipse` con el programa funcionando y comentado, respetando las reglas de estilo de la cátedra. La compilación no deberá arrojar mensajes de `error` ni de `warnings`.
 
 El proyecto deberá contar con la biblioteca `LinkedList` la cual se proveerá como una biblioteca estática, y se deberá hacer uso de dichas funciones para resolver la lógica del programa.
 
