@@ -1,7 +1,5 @@
 
-Programación I – Laboratorio I
-
-### 1 Objetivo
+# 1 Objetivo
 
 El objetivo del siguiente trabajo es que el alumno sea capaz de demostrar que puede integrar
 lo aprendido durante la cursada en un caso real.
