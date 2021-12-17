@@ -1,7 +1,7 @@
 [Volver](../README.md)
 # Trabajo Práctico número 3
 
-# 1 Objetivo
+# Objetivo
 
 El objetivo del siguiente trabajo es que el alumno sea capaz de demostrar que puede integrar
 lo aprendido durante la cursada en un caso real.
